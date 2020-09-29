@@ -1,40 +1,47 @@
-import React, {useContext} from 'react'
+// eslint-disable-next-line no-use-before-define
+import React, { useContext, FunctionComponent } from 'react';
+import './ProductView.scss';
+import API from '../API/API';
+import { LogicContext } from '../LogicContext/LogicContext';
 
-import "./ProductView.scss";
+const ProductView: FunctionComponent = () => {
+  const [logicState, logicDispatch] = useContext(LogicContext);
 
-import API from "../API/API.tsx";
+  async function handleLoadProductsClick (event: MouseEvent) {
+    const request = new API.Get_Products();
+    const products = await request.fetch();
+    logicDispatch({ type: 'set_products', payload: products });
+  }
 
-import {LogicContext} from '../LogicContext/LogicContext.tsx';
+  interface ProductObjectInterface {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    display: number;
+  }
 
-function ProductView(props) {
-	const [logicState, logicDispatch] = useContext(LogicContext);
+  function createProductElement (productObject: ProductObjectInterface) {
+    console.log(productObject);
+    return (
+      <div className='product'>
+        {productObject.name}
+      </div>
+    );
+  }
 
-	async function handleLoadProductsClick(event) {
-		const request = new API.Get_Products();
-		const products = await request.fetch();
-		logicDispatch({type: "set_products", payload: products});
-	}
+  function createProductElements (productObjects: Array<ProductObjectInterface>) {
+    return productObjects.map(productObject => createProductElement(productObject));
+  }
 
-	function createProductElement(productObject) {
-		return (
-			<div className="product">
-				{productObject.name}
-			</div>
-		);
-	}
-
-	function createProductElements(productObjects) {
-		return productObjects.map(productObject => createProductElement(productObject));
-	}
-
-	return (
-		<div className="ProductView">
-			<div>
-				{ createProductElements(logicState.products) }
-			</div>
-			<button onClick={handleLoadProductsClick}>Load products</button>
-		</div>
-	);
+  return (
+    <div className='ProductView'>
+      <div>
+        { createProductElements(logicState.products) }
+      </div>
+      <button onClick={handleLoadProductsClick}>Load products</button>
+    </div>
+  );
 }
 
 export default ProductView;

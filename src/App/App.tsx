@@ -1,15 +1,15 @@
-import React, {useContext} from 'react';
+// eslint-disable-next-line no-use-before-define
+import React from 'react';
 
-import {LogicContextWrapper} from '../LogicContext/LogicContext.tsx';
+import { LogicContextWrapper } from '../LogicContext/LogicContext';
+import ProductView from '../ProductView/ProductView';
 
-import ProductView from '../ProductView/ProductView.tsx';
-
-function App() {
-	return (
-		<LogicContextWrapper>
-			<ProductView />
-		</LogicContextWrapper>
-	);
+function App () {
+  return (
+    <LogicContextWrapper>
+      <ProductView />
+    </LogicContextWrapper>
+  );
 }
 
 export default App;

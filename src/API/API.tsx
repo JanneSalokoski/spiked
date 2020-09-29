@@ -1,142 +1,173 @@
-interface fetch_function_interface {
-	(): [key: string]: any;
+interface PropertiesInterface {
+  [key: string]: any;
 }
 
-interface API_request_interface {
-	url: string;
-	method: string;
-	properties?: [key: string]: any;
-	parameters?: [key: string]: any;
-	fetch: fetch_function_interface;
+interface ParametersInterface {
+  [key: string]: any;
 }
 
-class API_request implements API_request_interface {
-	constructor(endpoint: string, method:string="GET", properties={}) {
-		this.url = new URL(`http://salokoski.eu/socket/${endpoint}.php`);
-		this.method = method;
-		this.properties = properties;
-	}
-
-	async fetch() {
-		const response = await fetch(this.url, this.properties);
-		const data = await response.json();
-		return data;
-	}
+interface FetchFunctionInterface {
+  (): Object;
 }
 
-interface Properties_object {
-	method: "GET" | "POST";
-	body: string;
+interface APIRequestInterface {
+  fetch: FetchFunctionInterface;
 }
 
-class API_get_request extends API_request {
-	constructor(endpoint: string, parameters: Parameters) {
-		super(endpoint, "GET");
+class APIRequest implements APIRequestInterface {
+  url: URL;
+  method: string;
+  properties: PropertiesInterface;
+  parameters: ParametersInterface;
 
-		this.parameters = parameters;
-		this.url.search = new URLSearchParams(this.parameters);
-		this.properties = {method: "GET"};
-	}
+  constructor (endpoint: string, method:string='GET', properties = {}) {
+    this.url = new URL(`http://salokoski.eu/socket/${endpoint}.php`);
+    this.method = method;
+    this.properties = properties;
+  }
+
+  async fetch (): Promise<any> {
+    const response = await fetch(this.url, this.properties);
+    const data = await response.json();
+    return data;
+  }
+}
+
+interface PropertiesObject {
+  method: 'GET' | 'POST';
+  body: string;
+}
+
+class APIGetRequest extends APIRequest {
+  constructor (endpoint: string, parameters: ParametersInterface) {
+    super(endpoint, 'GET');
+
+    this.parameters = parameters;
+    this.url.search = new URLSearchParams(this.parameters);
+    this.properties = { method: 'GET' };
+  }
+}
+
+interface GetPropertiesObjectInterface {
+  (): PropertiesInterface;
 }
 
 interface Body {
-	[key: string]: any;
+  [key: string]: any;
 }
 
-interface API_post_request_inteface extends API_request_interface {
-		get_properties_object: (): Properties_object;	
+interface APIPostRequestInterface extends APIRequestInterface {
+    getPropertiesObject: GetPropertiesObjectInterface;
 }
 
-class API_post_request extends API_request implements API_post_request_inteface {
-	constructor(endpoint: string, body: Body) {
-		super(endpoint, "POST");
+interface BodyInterface {
+  [key: string]: any;
+}
 
-		this.body = body;
-		this.properties = this.get_properties_object();
-	}
+class APIPostRequest extends APIRequest implements APIPostRequestInterface {
+  body: BodyInterface;
 
-	get_properties_object(): Properties_object {
-		return {
-			method: "POST",
-			body: JSON.stringify(this.body)
-		};
-	}	
+  constructor (endpoint: string, body: Body) {
+    super(endpoint, 'POST');
+
+    this.body = body;
+    this.properties = this.getPropertiesObject();
+  }
+
+  getPropertiesObject (): PropertiesObject {
+    return {
+      method: 'POST',
+      body: JSON.stringify(this.body)
+    };
+  }
 }
 
 // Product API calls
 
-class Get_Products_API_Request extends API_get_request {
-	constructor() {
-		super("get_product");
-	}
+class GetProductsAPIRequest extends APIGetRequest {
+  constructor() {
+    super('get_product', {});
+  }
 }
 
-class Get_Product_API_Request extends API_get_request {
-	constructor(id: number) {
-		super("get_product", {id: id});
-	}
+class GetProductAPIRequest extends APIGetRequest {
+  constructor (id: number) {
+    super('get_product', {id: id});
+  }
 }
 
-class Set_Product_API_Request extends API_post_request {
-	constructor(body: [key: string]: any) {
-		super("set_product", body);
-	}
+class SetProductAPIRequest extends APIPostRequest {
+  constructor (body: BodyInterface) {
+    super('set_product', body);
+  }
 }
 
 // Customer API calls
 
-class Get_Customers_API_Request extends API_get_request {
-	constructor() {
-		super("get_customers");
-	}
+class GetCustomersAPIRequest extends APIGetRequest {
+  constructor () {
+    super('get_customers', {});
+  }
 }
 
-class Get_Customer_API_Request extends API_get_request {
-	constructor(id: number) {
-		super("get_customer", {id: id});
-	}
+class GetCustomerAPIRequest extends APIGetRequest {
+  constructor (id: number) {
+    super('get_customer', {id: id});
+  }
 }
 
-class Set_Customer_API_Request extends API_post_request {
-	constructor(body: [key: string]: any) {
-		super("set_customer", body);
-	}
+class SetCustomerAPIRequest extends APIPostRequest {
+  constructor (body: BodyInterface) {
+    super('set_customer', body);
+  }
 }
 
 // Transaction API calls
 
-class Get_Transactions_API_Request extends API_get_request {
-	constructor() {
-		super("get_transactions");
-	}
+class GetTransactionsAPIRequest extends APIGetRequest {
+  constructor () {
+    super('get_transactions', {});
+  }
 }
 
-class Get_Transaction_API_Request extends API_get_request {
-	constructor(id: number) {
-		super("get_transaction", {id: id});
-	}
+class GetTransactionAPIRequest extends APIGetRequest {
+  constructor (id: number) {
+    super('get_transaction', {id: id});
+  }
 }
 
-class Set_Transaction_API_Request extends API_post_request {
-	constructor(body: [key: string]: any) {
-		super("set_transaction", body);
-	}
+class SetTransactionAPIRequest extends APIPostRequest {
+  constructor (body: BodyInterface) {
+    super('set_transaction', body);
+  }
 }
 
 class API {
-	constructor() {
-		this.Get_Products = Get_Products_API_Request;
-		this.Get_Product = Get_Product_API_Request;
-		this.Set_Product = Set_Product_API_Request;
+  GetProducts: any;
+  GetProduct: any;
+  SetProduct: any;
 
-		this.Get_Customers = Get_Customers_API_Request;
-		this.Get_Customer = Get_Customer_API_Request;
-		this.Set_Customer = Set_Customer_API_Request;
+  GetCustomers: any;
+  GetCustomer: any;
+  SetCustomer: any;
 
-		this.Get_Transactions = Get_Transactions_API_Request;
-		this.Get_Transaction = Get_Transaction_API_Request;
-		this.Set_Transaction = Set_Transaction_API_Request;
-	}
+  GetTransactions: any;
+  GetTransaction: any;
+  SetTransaction: any;
+
+  constructor () {
+    this.GetProducts = GetProductsAPIRequest;
+    this.GetProduct = GetProductAPIRequest;
+    this.SetProduct = SetProductAPIRequest;
+
+    this.GetCustomers = GetCustomersAPIRequest;
+    this.GetCustomer = GetCustomerAPIRequest;
+    this.SetCustomer = SetCustomerAPIRequest;
+
+    this.GetTransactions = GetTransactionsAPIRequest;
+    this.GetTransaction = GetTransactionAPIRequest;
+    this.SetTransaction = SetTransactionAPIRequest;
+  }
 }
 
 export default new API();

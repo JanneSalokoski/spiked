@@ -1,5 +1,14 @@
 {
 	"compilerOptions": {
-		"jsx": "react"	
-	}
+		"jsx": "react",
+		"lib": [ "es2016" ]
+	},
+	"strict": true,
+	"tslint": {
+		"args": ["--project", "${folder}"]
+	},
+	"include": [
+		"index.tsx",
+		"src/**/*.tsx"
+	]
 }

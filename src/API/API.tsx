@@ -64,7 +64,7 @@ class API_post_request extends API_request {
 
 class Get_Products_API_Request extends API_get_request {
 	constructor() {
-		super("get_products");
+		super("get_product");
 	}
 }
 

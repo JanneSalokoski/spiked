@@ -4,11 +4,29 @@ import './ProductView.scss';
 import API from '../API/API';
 import { LogicContext } from '../LogicContext/LogicContext';
 
+interface ProductElementPropsInterface {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  display: boolean;
+}
+
+const ProductElement: FunctionComponent = (props: ProductElementPropsInterface) => {
+  return (
+    <div className="product-element">
+      <h3 className="title">{props.name}</h3>
+      <p className="description">{props.description}</p>
+      <p className="price">{props.price}</p>
+    </div>
+  );
+}
+
 const ProductView: FunctionComponent = () => {
   const [logicState, logicDispatch] = useContext(LogicContext);
 
   async function handleLoadProductsClick (event: MouseEvent) {
-    const request = new API.Get_Products();
+    const request = new API.GetProducts();
     const products = await request.fetch();
     logicDispatch({ type: 'set_products', payload: products });
   }
@@ -22,11 +40,14 @@ const ProductView: FunctionComponent = () => {
   }
 
   function createProductElement (productObject: ProductObjectInterface) {
-    console.log(productObject);
     return (
-      <div className='product'>
-        {productObject.name}
-      </div>
+      <ProductElement
+        id = { productObject.id }
+        key = { productObject.id }
+        name = { productObject.name }
+        description = { productObject.description }
+        price = { productObject.price }
+      />
     );
   }
 
@@ -35,10 +56,8 @@ const ProductView: FunctionComponent = () => {
   }
 
   return (
-    <div className='ProductView'>
-      <div>
-        { createProductElements(logicState.products) }
-      </div>
+    <div className='product-view'>
+      { createProductElements(logicState.products) }
       <button onClick={handleLoadProductsClick}>Load products</button>
     </div>
   );

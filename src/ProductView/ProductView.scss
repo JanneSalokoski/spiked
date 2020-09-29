@@ -1,3 +1,22 @@
-div.ProductView {
-	
+@use './../Style/general';
+
+div {
+  .product-view {
+    @include general.margin;
+    width: calc(100% - 2em);
+
+    display: grid;
+    grid-template-columns: repeat(3, 33.3%);
+    grid-template-rows: repeat(auto-fill, 6em);
+
+    column-gap: 0.5em;
+    row-gap: 0.5em;
+
+    .product-element {
+      @include general.border;
+      @include general.padding; 
+
+      background-color: general.$white;
+    }
+  }
 }

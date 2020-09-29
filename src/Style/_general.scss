@@ -1,0 +1,19 @@
+$light-blue: rgb(168, 218, 220);
+$blue: rgb(69, 123, 157);
+$dark-blue: rgb(29, 53, 87);
+$white: rgb(241, 250, 238);
+$red: rgb(230, 57, 70);
+$black: #112a46;
+
+@mixin border {
+  border: 1px solid $dark-blue;
+  border-radius: 3px;
+}
+
+@mixin padding {
+  padding: .5em;
+}
+
+@mixin margin {
+  margin: .5em;
+}

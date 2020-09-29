@@ -1,0 +1,15 @@
+@use 'general';
+
+@import 'Reset';
+
+body {
+  height: 100vh;
+  width: 100vw;
+
+  background-color: general.$light-blue;
+  color: general.$black;
+
+  font-family: Fira Sans;
+}
+
+

@@ -1,28 +1,6 @@
-const BASE_URL = "http://salokoski.eu/socket";
-
-async function get_request(endpoint, payload={}) {
-	let url = new URL(`${BASE_URL}/${endpoint}.php`);
-	url.search = new URLSearchParams(payload);
-	console.log(url);
-
-	const response = await fetch(url);
-	const data = await response.json();
-	return data;
-}
-
-async function post_request(endpoint, payload) {
-	const url = `${BASE_URL}/${endpoint}.php`;
-	const response = await fetch(url, {
-		method: "POST",
-		body: JSON.stringify(payload)
-	});
-	const data = await response.json();
-	return data;
-}
-
 class API_request {
 	constructor(endpoint, method="GET", properties={}) {
-		this.url = new URL(`${BASE_URL}/${endpoint}.php`);
+		this.url = new URL(`http://salokoski.eu/socket/${endpoint}.php`);
 		this.method = method;
 		this.properties = properties;
 	}

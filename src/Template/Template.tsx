@@ -1,17 +1,22 @@
-import React, {useContext} from 'react'
+// eslint-disable-next-line no-use-before-define
+import React, { useContext } from 'react'
 
-import "./Template.scss";
+import './Template.scss';
 
-import {LogicContext} from '../LogicContext/LogicContext.tsx';
+import { LogicContext } from '../LogicContext/LogicContext';
 
-function Template(props) {
-	const [logicState, logicDispatch] = useContext(LogicContext);
+interface TemplatePropsInterface {
+  [key: string]: any;
+}
 
-	return (
-		<div className="Template">
+function Template (props: TemplatePropsInterface) {
+  const [logicState, logicDispatch] = useContext(LogicContext);
 
-		</div>
-	);
+  return (
+    <div className='Template'>
+
+    </div>
+  );
 }
 
 export default Template;

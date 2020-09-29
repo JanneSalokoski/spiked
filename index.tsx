@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './src/Style/Index.scss';
+
 import App from './src/App/App.tsx';
 
 function enable_true_HMR() {

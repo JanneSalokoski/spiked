@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"jsx": "react",
-		"lib": [ "es2016" ]
+		"lib": [ "es2016", "dom" ]
 	},
 	"strict": true,
 	"tslint": {

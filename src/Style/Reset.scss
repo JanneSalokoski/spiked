@@ -64,6 +64,8 @@ input,
 button,
 textarea,
 select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
   font: inherit;
 }
 

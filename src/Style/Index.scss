@@ -12,4 +12,9 @@ body {
   font-family: Fira Sans;
 }
 
+button, input[type=button] {
+  @include general.border;
+  @include general.padding;
+  background-color: general.$white;
+}
 

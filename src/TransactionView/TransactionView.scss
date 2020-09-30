@@ -16,10 +16,10 @@ div {
   	.controls {
   		input[type=button] {
   			width: 100%;
-  			@include general.border;
+  			padding: 0px;
 
   			&.execute-button {
-  				height: 60%;
+  				height: calc(3em - 1px);
 
   				border-bottom: none;
   				border-bottom-left-radius: 0px;
@@ -27,7 +27,7 @@ div {
   			}
 
   			&.cancel-button {
-  				height: 40%;
+  				height: calc(2em - 2px);
 
   				border-top-left-radius: 0px;
   				border-top-right-radius: 0px;

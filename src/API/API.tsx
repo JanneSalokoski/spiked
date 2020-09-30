@@ -87,7 +87,7 @@ class APIPostRequest extends APIRequest implements APIPostRequestInterface {
 class GetProductsAPIRequest extends APIGetRequest {
   constructor() {
     super('get_product', {});
-  }
+  
 }
 
 class GetProductAPIRequest extends APIGetRequest {
@@ -106,7 +106,7 @@ class SetProductAPIRequest extends APIPostRequest {
 
 class GetCustomersAPIRequest extends APIGetRequest {
   constructor () {
-    super('get_customers', {});
+    super('get_customer', {});
   }
 }
 
@@ -126,7 +126,7 @@ class SetCustomerAPIRequest extends APIPostRequest {
 
 class GetTransactionsAPIRequest extends APIGetRequest {
   constructor () {
-    super('get_transactions', {});
+    super('get_transaction', {});
   }
 }
 

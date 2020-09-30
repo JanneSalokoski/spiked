@@ -35,7 +35,7 @@ interface ActionInterface {
 }
 
 function LogicReducer (state: StateInterface, action: ActionInterface) {
-  const newState = { ...state };
+  const newState: StateInterface = { ...state };
 
   const handlers = {
     set_products: (payload) => { newState.products = payload },

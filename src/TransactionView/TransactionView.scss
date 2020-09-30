@@ -1,0 +1,38 @@
+@use './../Style/general';
+
+div {
+  .transaction-view {
+  	@include general.padding;
+  	@include general.margin;
+  	@include general.border;
+
+  	background: general.$white;
+
+  	display: grid;
+
+  	grid-template-columns: auto auto 5em;
+  	grid-template-rows: auto;
+
+  	.controls {
+  		input[type=button] {
+  			width: 100%;
+  			@include general.border;
+
+  			&.execute-button {
+  				height: 60%;
+
+  				border-bottom: none;
+  				border-bottom-left-radius: 0px;
+  				border-bottom-right-radius: 0px;
+  			}
+
+  			&.cancel-button {
+  				height: 40%;
+
+  				border-top-left-radius: 0px;
+  				border-top-right-radius: 0px;
+  			}
+  		}
+  	}
+  }
+}

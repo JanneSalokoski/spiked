@@ -3,10 +3,12 @@ import React from 'react';
 
 import { LogicContextWrapper } from '../LogicContext/LogicContext';
 import ProductView from '../ProductView/ProductView';
+import TransactionView from '../TransactionView/TransactionView';
 
 function App () {
   return (
     <LogicContextWrapper>
+      <TransactionView />
       <ProductView />
     </LogicContextWrapper>
   );

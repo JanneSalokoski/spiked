@@ -58,7 +58,6 @@ const ProductView: FunctionComponent = () => {
   return (
     <div className='product-view'>
       { createProductElements(logicState.products) }
-      <button onClick={handleLoadProductsClick}>Load products</button>
     </div>
   );
 }

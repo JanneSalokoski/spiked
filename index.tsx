@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './src/Style/Index.scss';
 
+import { LogicContextWrapper } from './src/LogicContext/LogicContext';
 import App from './src/App/App.tsx';
 
 function enable_true_HMR() {
@@ -13,7 +14,9 @@ function enable_true_HMR() {
 
 function render_application() {
 	ReactDOM.render(
-		<App />,
+		<LogicContextWrapper>
+			<App />,
+		</LogicContextWrapper>
 		document.getElementById("root")
 	);
 }

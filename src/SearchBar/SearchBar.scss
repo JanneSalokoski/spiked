@@ -1,0 +1,37 @@
+@use './../Style/general';
+
+div {
+  .searchbar {
+  	@include general.margin;
+
+  	display: grid;
+  	grid-template-columns: auto 4em;
+
+  	grid-column-gap: 0px;
+
+  	input {
+  		@include general.padding;
+  	}
+
+  	input[type=text] {
+  		@include general.border;
+  		border-right-width: 0px;
+  		border-top-right-radius: 0px;
+  		border-bottom-right-radius: 0px;
+
+  		background-color: general.$white;
+  	}
+
+  	input[type=button] {
+  		@include general.border;
+  		padding: 0px;	
+
+  		background-color: general.$blue;
+  		color: general.$white;
+
+  		border-left-width: 1px;
+  		border-top-left-radius: 0px;
+  		border-bottom-left-radius: 0px;
+  	}
+  }
+}

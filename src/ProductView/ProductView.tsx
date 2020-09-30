@@ -3,6 +3,7 @@ import React, { useContext, FunctionComponent } from 'react';
 import './ProductView.scss';
 import API from '../API/API';
 import { LogicContext } from '../LogicContext/LogicContext';
+import priceFormat from '../Utilities/Price';
 
 interface ProductElementPropsInterface {
   id: number;
@@ -16,8 +17,7 @@ const ProductElement: FunctionComponent = (props: ProductElementPropsInterface) 
   return (
     <div className="product-element">
       <h3 className="title">{props.name}</h3>
-      <p className="description">{props.description}</p>
-      <p className="price">{props.price}</p>
+      <p className="price">{priceFormat(props.price)}</p>
     </div>
   );
 }

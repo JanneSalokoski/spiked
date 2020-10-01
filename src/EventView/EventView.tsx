@@ -14,7 +14,16 @@ function EventView (props: EventViewPropsInterface) {
 
   return (
     <div className='EventView'>
-      Moips
+      <div className='event-info'>
+        <h3 className='title'>Rapujuhlat</h3>
+        <p><strong>21.30</strong></p>
+        <p>26. syyskuuta</p>
+      </div>
+      <div className='economy'>
+        <h4>Talous</h4>
+        <p>Kassa: 130,20€</p>
+        <p>Myynti: +40€</p>
+      </div>
     </div>
   );
 }

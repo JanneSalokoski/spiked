@@ -5,6 +5,13 @@ div {
   	@include general.border;
   	@include general.padding;
   	background-color: general.$white;
+
+  	display: grid;
+  	grid-template-columns: 50% 50%;
+
+  	.economy {
+  		text-align: right;
+  	}
   }
 
 }

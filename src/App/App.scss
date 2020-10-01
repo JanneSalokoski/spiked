@@ -1,0 +1,15 @@
+@use './../Style/general';
+
+div {
+  .app {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 3em 6em calc(100% - 15em - 1.5em) 6em;
+
+    height: calc(var(--vh, 1vh) * 100 - 1em);
+
+    @include general.margin;
+
+    grid-row-gap: 0.5em;
+  }
+}

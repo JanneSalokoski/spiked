@@ -3,7 +3,6 @@
 div {
   .transaction-view {
   	@include general.padding;
-  	@include general.margin;
   	@include general.border;
 
   	background: general.$white;
@@ -18,8 +17,12 @@ div {
   			width: 100%;
   			padding: 0px;
 
+  			color: general.$white;
+
   			&.execute-button {
   				height: calc(3em - 1px);
+
+  				background-color: general.$blue;
 
   				border-bottom: none;
   				border-bottom-left-radius: 0px;
@@ -28,6 +31,8 @@ div {
 
   			&.cancel-button {
   				height: calc(2em - 2px);
+
+  				background-color: general.$red;
 
   				border-top-left-radius: 0px;
   				border-top-right-radius: 0px;

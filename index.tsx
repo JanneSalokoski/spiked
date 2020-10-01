@@ -12,10 +12,22 @@ function enable_true_HMR() {
 	}
 }
 
+function setVhUnit() {
+	let vh = window.innerHeight * 0.01;
+	document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+function fixViewportUnits() {
+	setVhUnit();
+	window.addEventListener('resize', () => {
+		setVhUnit();
+	});
+}
+
 function render_application() {
 	ReactDOM.render(
 		<LogicContextWrapper>
-			<App />,
+			<App />
 		</LogicContextWrapper>
 		document.getElementById("root")
 	);
@@ -23,6 +35,7 @@ function render_application() {
 
 function init() {
 	enable_true_HMR();
+	fixViewportUnits();
 	render_application();
 }
 

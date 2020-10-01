@@ -52,6 +52,7 @@ const ProductView: FunctionComponent = () => {
   }
 
   function createProductElements (productObjects: Array<ProductObjectInterface>) {
+    console.log(productObjects);
     return productObjects.map(productObject => createProductElement(productObject));
   }
 

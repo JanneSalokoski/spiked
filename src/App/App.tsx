@@ -5,6 +5,9 @@ import { LogicContext } from '../LogicContext/LogicContext';
 import ProductView from '../ProductView/ProductView';
 import TransactionView from '../TransactionView/TransactionView';
 import SearchBar from '../SearchBar/SearchBar';
+import EventView from '../EventView/EventView';
+
+import './App.scss';
 
 import API from '../API/API';
 
@@ -40,6 +43,7 @@ function App () {
       <SearchBar />
       <TransactionView />
       <ProductView />
+      <EventView />
     </div>
   );
 }

@@ -1,35 +1,72 @@
 @use './../Style/general';
 
 div {
-  .searchbar {
-  	display: grid;
-  	grid-template-columns: auto 4em;
+  .search {
+    .searchbar {
+      display: grid;
+      grid-template-columns: auto 4em;
 
-  	grid-column-gap: 0px;
+      grid-column-gap: 0px;
 
-  	input {
-  		@include general.padding;
-  	}
+      height: 3em;
 
-  	input[type=text] {
-  		@include general.border;
-  		border-right-width: 0px;
-  		border-top-right-radius: 0px;
-  		border-bottom-right-radius: 0px;
+      input {
+        @include general.padding;
+      }
 
-  		background-color: general.$white;
-  	}
+      input[type=text] {
+        @include general.border;
+        border-right-width: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
 
-  	input[type=button] {
-  		@include general.border;
-  		padding: 0px;	
+        background-color: general.$white;
+      }
 
-  		background-color: general.$blue;
-  		color: general.$white;
+      input[type=button] {
+        @include general.border;
+        padding: 0px; 
 
-  		border-left-width: 1px;
-  		border-top-left-radius: 0px;
-  		border-bottom-left-radius: 0px;
-  	}
+        background-color: general.$blue;
+        color: general.$white;
+
+        border-left-width: 1px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+    }
+
+    .results {
+      @include general.border;
+      @include general.padding;
+      background-color: general.$white;
+
+      z-index: 0;
+      position: absolute;
+
+      width: calc(100vw - 1em);
+
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-top-width: 0px;
+
+      display: none;
+
+      // transform: translateY(-1px);
+    }
+  }
+
+  .search.open {
+    .searchbar {
+      input {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+    }
+
+    .results {
+      color: red;
+      display: block;
+    } 
   }
 }
